@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">OSH Helper</string>
+    <string name="go_back_text"><![CDATA[<<<]]></string>
+    <string name="go_next_text"><![CDATA[>>>]]></string>
+    <string name="answer_button_text">Ответить</string>
+</resources>
