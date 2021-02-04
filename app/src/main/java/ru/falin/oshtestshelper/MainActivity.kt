@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Bundle
+import android.text.method.ScrollingMovementMethod
 import android.widget.ScrollView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -38,6 +39,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        question_text.movementMethod = ScrollingMovementMethod()
 
         answer_1_text.setOnClickListener {
             if (isAnswered) {
@@ -202,7 +205,12 @@ class MainActivity : AppCompatActivity() {
             val currentUri = Uri.parse(pathToFile)
             val questions = readFileContent(currentUri)
             shuffledListOfQuestion = questions.shuffled().toMutableList()
-            setupContent(shuffledListOfQuestion[currentQuestion])
+            if (questions.count() != 0) {
+                setupContent(shuffledListOfQuestion[currentQuestion])
+            } else {
+                askForPathToFile()
+            }
+
         } else {
             askForPathToFile()
         }
